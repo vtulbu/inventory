@@ -48,14 +48,15 @@ const { open, toggle } = useSidebarState();
 
 <style scoped>
 .sidebar {
-  width: 350px;
   border-right: 1px solid #ccc;
   transition: all 0.3s ease;
   padding: 3rem 2rem;
+  min-width: 350px;
 }
 
 .sidebar--collapsed {
   width: 120px;
   padding: 3rem 1rem;
+  min-width: 120px;
 }
 </style>

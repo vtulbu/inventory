@@ -16,8 +16,10 @@
   <div class="mt-10">
     <FilterInventory @search="searchFilter = $event" />
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-    <div
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 justify-items-center"
+  >
+    <Cart
       v-for="product in data.products.filter((product) => {
         if (route.query.category === 'all') {
           return product.name
@@ -31,22 +33,19 @@
         }
       })"
       :key="product.id"
-    >
-      <Cart
-        :product="product"
-        @addToCart="
-          (e) =>
-            addProduct({
-              id: product.id,
-              quantity: e.quantity,
-              totalPrice: product.price * e.quantity,
-            })
-        "
-        :quantity="
-          shoppingList.find((item) => item.id === product.id)?.quantity || 0
-        "
-      />
-    </div>
+      :product="product"
+      @addToCart="
+        (e) =>
+          addProduct({
+            id: product.id,
+            quantity: e.quantity,
+            totalPrice: product.price * e.quantity,
+          })
+      "
+      :quantity="
+        shoppingList.find((item) => item.id === product.id)?.quantity || 0
+      "
+    />
   </div>
 </template>
 
