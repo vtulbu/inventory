@@ -15,7 +15,7 @@
         />
       </div>
       <div class="flex flex-col gap-4">
-        <p>beers</p>
+        <p>Category {{ product.category }}</p>
         <p>
           {{ product.name }}
         </p>
@@ -47,15 +47,20 @@
     </div>
     <div class="flex gap-6">
       <ItemsCounter
-        :count="quantity"
-        @decrease="quantity--"
-        @increase="quantity++"
+        :count="refQuantity"
+        @decrease="refQuantity--"
+        @increase="refQuantity++"
         :max="product.stock"
       />
 
       <button
         class="add-to-cart bg-red-400 rounded-lg"
-        @click="emit('addToCart', { productId: product.id, quantity })"
+        :class="{
+          'cursor-not-allowed opacity-50 bg-gray-200': refQuantity === 0,
+        }"
+        @click="
+          emit('addToCart', { productId: product.id, quantity: refQuantity })
+        "
       >
         <LucideShoppingCart :size="18" />
       </button>
@@ -64,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   product: {
     id: number;
     name: string;
@@ -73,15 +78,17 @@ defineProps<{
     image: string;
     unit: string;
     brand: string;
+    category: number;
   };
+  quantity: number;
 }>();
 
 const emit = defineEmits<{
   addToCart: [cartItem: { productId: number; quantity: number }];
 }>();
 
-const quantity = ref(0);
 const isImageLoaded = ref(false);
+const refQuantity = ref(props.quantity);
 </script>
 
 <style scoped>

@@ -16,6 +16,19 @@
     <button class="mb-16" @click="router.push('/')">
       <LucideHouse />
     </button>
+    <div class="mb-16">
+      <ul>
+        <li>
+          <button
+            @click="router.push('/inventory?category=all')"
+            class="flex gap-2"
+          >
+            <LucidePackage />
+            <span v-if="open">Inventory</span>
+          </button>
+        </li>
+      </ul>
+    </div>
 
     <div class="flex justify-between">
       <button @click="router.push('/settings')">
