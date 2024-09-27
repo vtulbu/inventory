@@ -47,16 +47,6 @@ const { open, toggle } = useSidebarState();
 </script>
 
 <style scoped>
-/* <ul>
-      <li v-for="(item, index) in menuItems" :key="index">
-        <a href="#">
-          <span v-if="!isCollapsed">{{ item }}</span>
-          <i v-else class="icon">☰</i>
-          <!-- Placeholder icon, replace as needed -->
-        </a>
-      </li>
-    </ul> */
-
 .sidebar {
   width: 350px;
   border-right: 1px solid #ccc;
@@ -68,8 +58,4 @@ const { open, toggle } = useSidebarState();
   width: 120px;
   padding: 3rem 1rem;
 }
-
-/* .sidebar-header {
-
-} */
 </style>
