@@ -13,8 +13,19 @@
     :selectedItem="selectedFilter"
     @change="(id) => (selectedFilter = id)"
   />
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+    <Cart :product="product" />
+  </div>
 </template>
 
 <script setup>
 const selectedFilter = ref("all");
+const product = {
+  id: 1,
+  name: "Product 1",
+  price: 10,
+  stock: 4,
+  image: "https://via.placeholder.com/150",
+  unit: "unit",
+};
 </script>
