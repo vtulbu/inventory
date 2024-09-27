@@ -13,19 +13,18 @@
     :selectedItem="selectedFilter"
     @change="(id) => (selectedFilter = id)"
   />
+  <div class="mt-10">
+    <FilterInventory :selectedFilter="selectedFilter" />
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-    <Cart :product="product" />
+    <div v-for="product in data.products" :key="product.id">
+      <Cart :product="product" />
+    </div>
   </div>
 </template>
 
 <script setup>
 const selectedFilter = ref("all");
-const product = {
-  id: 1,
-  name: "Product 1",
-  price: 10,
-  stock: 4,
-  image: "https://via.placeholder.com/150",
-  unit: "unit",
-};
+
+const { data } = await useFetch("/api/inventory");
 </script>
